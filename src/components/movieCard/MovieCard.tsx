@@ -1,60 +1,55 @@
-import { Card, CardTitle, CardDescription } from "../ui/Card/Card";
+import { Star } from "lucide-react";
 import "./MovieCard.scss";
+import { useGenresStore } from "../../store/useGenresStore";
+import { useTranslation } from "../../hooks/useTranslation";
 
 export default function MovieCard({ movie }: { movie: MovieCardProps }) {
-  const { id, title, poster_path, overview, release_date, popularity } = movie;
+  const { title, poster_path, release_date, genre_ids, vote_average } = movie;
+  const { getGenreNameById } = useGenresStore();
+  const { t, language } = useTranslation();
+
+  const onClick = () => {};
+
+  console.log("genre_ids", genre_ids);
+
+  // Format date based on language
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const locale = language === "vi" ? "vi-VN" : "en-US";
+    return date.toLocaleDateString(locale, {
+      year: "numeric",
+      month: "short",
+    });
+  };
+
   return (
-    <Card className="movie-card">
-      <div className="movie-card__content">
-        {/* Poster Image */}
-        <div className="movie-card__poster">
-          {poster_path ? (
-            <img
-              src={`${import.meta.env.VITE_IMAGE_URL}/${poster_path}`}
-              alt={title}
-              width={120}
-              height={180}
-              className="poster-image"
-            />
-          ) : (
-            <div className="poster-placeholder">
-              <span>No Image</span>
-            </div>
-          )}
-        </div>
+    <button onClick={onClick} className="movie-card">
+      <div className="poster">
+        <img
+          src={`${import.meta.env.VITE_IMAGE_URL}/${poster_path}`}
+          alt={title}
+          width={120}
+          height={180}
+          className="poster-image"
+        />
 
-        {/* Movie Info */}
-        <div className="movie-card__info">
-          <div className="movie-card__header">
-            <CardTitle className="movie-card__title">{title}</CardTitle>
-            <CardDescription className="movie-card__date">
-              {release_date
-                ? new Date(release_date).toLocaleDateString()
-                : "Release date unknown"}
-            </CardDescription>
-          </div>
-
-          {/* Overview */}
-          <p className="movie-card__overview">
-            {overview || "No overview available"}
-          </p>
-
-          {/* Popularity Badge */}
-          <div className="movie-card__popularity">
-            <span className="label">Popularity:</span>
-            <div className="bar">
-              <div
-                className="fill"
-                style={{ width: `${Math.min(popularity, 100)}%` }}
-              />
-            </div>
-            <span className="value">{popularity.toFixed(1)}</span>
-          </div>
-
-          {/* Movie ID */}
-          <p className="movie-card__id">ID: {id}</p>
+        <div className="rating">
+          <Star className="icon" />
+          <span>{vote_average.toFixed(1)}</span>
         </div>
       </div>
-    </Card>
+
+      <div className="info">
+        <h3 className="title">{title}</h3>
+        <p className="release">{formatDate(release_date)}</p>
+        <div className="genres">
+          {genre_ids.slice(0, 2).map((genreId) => (
+            <span key={genreId} className="genre">
+              {getGenreNameById(genreId, t("unknownGenre"))}
+            </span>
+          ))}
+        </div>
+      </div>
+    </button>
   );
 }
