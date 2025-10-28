@@ -10,8 +10,6 @@ export default function MovieCard({ movie }: { movie: MovieCardProps }) {
 
   const onClick = () => {};
 
-  console.log("genre_ids", genre_ids);
-
   // Format date based on language
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
