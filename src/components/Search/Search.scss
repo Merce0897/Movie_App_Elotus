@@ -1,0 +1,136 @@
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .search-form {
+    transition: all 0.3s ease;
+
+    &.expanded {
+      .search-input-wrapper {
+        .search-input {
+          width: 250px;
+        }
+      }
+    }
+  }
+
+  .search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+
+    &:hover {
+      border-color: var(--primary);
+    }
+
+    &:focus-within {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px var(--primary-light);
+    }
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    width: 16px;
+    height: 16px;
+    color: var(--text-secondary);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .search-input {
+    width: 180px;
+    padding: 8px 16px 8px 40px;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+
+    &::placeholder {
+      color: var(--placeholder);
+      opacity: 1; /* Ensures consistent opacity across browsers */
+    }
+
+    &:focus {
+      width: 250px;
+      color: var(--text);
+    }
+  }
+
+  .clear-button {
+    position: absolute;
+    right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 2;
+
+    &:hover {
+      background-color: var(--secondary);
+    }
+
+    .clear-icon {
+      width: 14px;
+      height: 14px;
+      color: var(--text-secondary);
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .search-container {
+    .search-input {
+      width: 140px;
+
+      &:focus {
+        width: 200px;
+      }
+    }
+
+    .search-form.expanded {
+      .search-input-wrapper {
+        .search-input {
+          width: 200px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .search-container {
+    .search-input {
+      width: 120px;
+      font-size: 13px;
+
+      &:focus {
+        width: 160px;
+      }
+    }
+
+    .search-form.expanded {
+      .search-input-wrapper {
+        .search-input {
+          width: 160px;
+        }
+      }
+    }
+  }
+}

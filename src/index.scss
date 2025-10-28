@@ -26,10 +26,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--bg);
+  background: var(--bg-gradient);
+  background-attachment: fixed;
   color: var(--text);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
   line-height: 1.6;
+  min-height: 100vh;
 }
 
 // Typography
@@ -91,6 +93,47 @@ a {
   }
 }
 
+// Form elements and placeholders
+input,
+textarea,
+select {
+  &::placeholder {
+    color: var(--placeholder);
+    opacity: 1; /* Ensures consistent opacity across browsers */
+  }
+
+  &:focus {
+    &::placeholder {
+      color: var(--placeholder-light);
+    }
+  }
+}
+
+// Browser-specific placeholder styles for better cross-browser compatibility
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: var(--placeholder);
+  opacity: 1;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: var(--placeholder);
+  opacity: 1;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: var(--placeholder);
+  opacity: 1;
+}
+
+input::-ms-input-placeholder,
+textarea::-ms-input-placeholder {
+  color: var(--placeholder);
+  opacity: 1;
+}
+
 // Layout utilities
 .container {
   max-width: 1200px;
@@ -102,13 +145,13 @@ a {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: var(--bg);
+  background: transparent;
 }
 
 .main-content {
   flex: 1;
   padding: 2rem 0;
-  background-color: var(--bg);
+  background: transparent;
 }
 
 .items-center {
@@ -324,6 +367,6 @@ $spacings: 0, 4, 8, 12, 16, 20, 24, 32, 40, 48;
 
 // Theme transition
 * {
-  transition: background-color 0.3s ease, color 0.3s ease,
+  transition: background-color 0.3s ease, background 0.3s ease, color 0.3s ease,
     border-color 0.3s ease;
 }
