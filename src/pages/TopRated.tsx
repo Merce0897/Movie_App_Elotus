@@ -4,20 +4,20 @@ import MovieCard from "../components/MovieCard/MovieCard";
 import Pagination from "../components/Pagination/Pagination";
 import { useTranslation } from "../hooks/useTranslation";
 
-export default function Home() {
+export default function TopRated() {
   const { t, language } = useTranslation();
-  const search = useSearch({ from: "/" });
-  const navigate = useNavigate({ from: "/" });
+  const search = useSearch({ from: "/top-rated" });
+  const navigate = useNavigate({ from: "/top-rated" });
   const currentPage = search.page || 1;
 
-  // Fetch movies
+  // Fetch top rated movies
   const { isPending, error, data } = useQuery({
-    queryKey: ["now-playing-movies", language, currentPage],
+    queryKey: ["top-rated-movies", language, currentPage],
     queryFn: () =>
       fetch(
         `${
           import.meta.env.VITE_API_URL
-        }/movie/now_playing?language=${language}&page=${currentPage}`,
+        }/movie/top_rated?language=${language}&page=${currentPage}`,
         {
           headers: {
             accept: "application/json",
@@ -78,12 +78,12 @@ export default function Home() {
     <div className="container">
       <div className="py-16" style={{ textAlign: "center" }}>
         <h1 className="mb-8">
-          {language === "vi" ? "Phim Đang Chiếu" : "Now Playing Movies"}
+          {language === "vi" ? "Phim Được Đánh Giá Cao" : "Top Rated Movies"}
         </h1>
         <p className="text-secondary mb-24">
           {language === "vi"
-            ? "Khám phá những bộ phim mới nhất hiện đang chiếu rạp"
-            : "Discover the latest movies currently in theaters"}
+            ? "Khám phá những bộ phim được đánh giá cao nhất mọi thời đại"
+            : "Discover the highest rated movies of all time"}
         </p>
       </div>
 

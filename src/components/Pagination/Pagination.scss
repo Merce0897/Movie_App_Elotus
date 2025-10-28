@@ -1,0 +1,239 @@
+@use "../../styles/color" as *;
+@use "../../styles/theme" as *;
+
+.pagination-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 0;
+  user-select: none;
+}
+
+.pagination-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pagination-pages {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.pagination-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-primary);
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+  }
+
+  &:hover:not(:disabled) {
+    border-color: var(--color-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    &::before {
+      opacity: 0.1;
+    }
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+    transition-duration: 0.1s;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+
+    &:hover {
+      border-color: transparent;
+      box-shadow: none;
+
+      &::before {
+        opacity: 0;
+      }
+    }
+  }
+
+  svg {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &:hover:not(:disabled) svg {
+    transform: scale(1.1);
+  }
+}
+
+.pagination-btn--number {
+  min-width: 2.5rem;
+  padding: 0.5rem 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.pagination-btn--active {
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+  border-color: var(--color-primary);
+  box-shadow: 0 2px 8px rgba(var(--color-primary-rgb), 0.3);
+
+  &::before {
+    opacity: 1;
+    background: var(--color-primary-light);
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(var(--color-primary-rgb), 0.4);
+  }
+}
+
+.pagination-btn--prev,
+.pagination-btn--next {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+
+  span {
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    span {
+      display: inline;
+    }
+  }
+}
+
+.pagination-btn--first,
+.pagination-btn--last {
+  padding: 0.5rem;
+
+  @media (max-width: 640px) {
+    display: none;
+  }
+}
+
+.pagination-ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  user-select: none;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.pagination-info {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  text-align: center;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+// Responsive design
+@media (max-width: 640px) {
+  .pagination-container {
+    padding: 1rem 0;
+  }
+
+  .pagination-wrapper {
+    gap: 0.25rem;
+  }
+
+  .pagination-pages {
+    gap: 0.125rem;
+  }
+
+  .pagination-btn {
+    min-width: 2rem;
+    height: 2rem;
+    font-size: 0.75rem;
+  }
+
+  .pagination-btn--number {
+    min-width: 2rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .pagination-btn--prev,
+  .pagination-btn--next {
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+// Dark mode adjustments
+[data-theme="dark"] {
+  .pagination-btn {
+    background: var(--color-surface-dark);
+
+    &:hover:not(:disabled) {
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .pagination-btn--active {
+    box-shadow: 0 2px 8px rgba(var(--color-primary-rgb), 0.4);
+
+    &:hover {
+      box-shadow: 0 4px 16px rgba(var(--color-primary-rgb), 0.5);
+    }
+  }
+}
+
+// Animation keyframes
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+// Loading state animation
+.pagination-container.loading {
+  .pagination-btn {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .pagination-btn--active {
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+}
