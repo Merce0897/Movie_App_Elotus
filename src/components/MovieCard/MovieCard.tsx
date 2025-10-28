@@ -1,14 +1,14 @@
 import { Star } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import "./MovieCard.scss";
 import { useGenresStore } from "../../store/useGenresStore";
 import { useTranslation } from "../../hooks/useTranslation";
 
 export default function MovieCard({ movie }: { movie: MovieCardProps }) {
-  const { title, poster_path, release_date, genre_ids, vote_average } = movie;
+  const { id, title, poster_path, release_date, genre_ids, vote_average } =
+    movie;
   const { getGenreNameById } = useGenresStore();
   const { t, language } = useTranslation();
-
-  const onClick = () => {};
 
   // Format date based on language
   const formatDate = (dateString: string) => {
@@ -21,10 +21,14 @@ export default function MovieCard({ movie }: { movie: MovieCardProps }) {
   };
 
   return (
-    <button onClick={onClick} className="movie-card">
+    <Link
+      to="/movie/$movieId"
+      params={{ movieId: id.toString() }}
+      className="movie-card"
+    >
       <div className="poster">
         <img
-          src={`${import.meta.env.VITE_IMAGE_URL}/${poster_path}`}
+          src={`${import.meta.env.VITE_IMAGE_URL}/w500/${poster_path}`}
           alt={title}
           width={120}
           height={180}
@@ -48,6 +52,6 @@ export default function MovieCard({ movie }: { movie: MovieCardProps }) {
           ))}
         </div>
       </div>
-    </button>
+    </Link>
   );
 }
