@@ -14,6 +14,10 @@
   }
 
   &-brand {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
     .brand-link {
       font-size: 1.5rem;
       font-weight: bold;
@@ -31,6 +35,7 @@
     display: flex;
     align-items: center;
     gap: 2rem;
+    justify-content: space-between;
   }
 
   &-links {
@@ -58,6 +63,16 @@
     }
   }
 
+  &-search {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    max-width: 400px;
+    &:focus {
+      outline: 2px solid var(--primary);
+    }
+  }
+
   &-actions {
     display: flex;
     align-items: center;
@@ -74,6 +89,10 @@
 
     &-content {
       gap: 1rem;
+    }
+
+    &-search {
+      max-width: 200px;
     }
 
     &-links {
@@ -93,6 +112,18 @@
 
 @media (max-width: 480px) {
   .navbar {
+    &-content {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    &-search {
+      order: 3;
+      flex-basis: 100%;
+      margin-top: 0.5rem;
+      max-width: none;
+    }
+
     &-links {
       gap: 0.5rem;
 

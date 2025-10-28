@@ -1,6 +1,7 @@
 $light-theme: (
   // Base colors
   bg: #ffffff,
+  bg-gradient: linear-gradient(135deg, #e0e7ff 0%, #f1f5f9 50%, #fdf2f8 100%),
   bg-secondary: #f8fafc,
   bg-tertiary: #f1f5f9,
   text: #111827,
@@ -33,12 +34,16 @@ $light-theme: (
   // Card and surface colors
   card-bg: #ffffff,
   surface: #f9fafb,
-  overlay: rgba(0, 0, 0, 0.5)
+  overlay: rgba(0, 0, 0, 0.5),
+  // Placeholder colors
+  placeholder: #9ca3af,
+  placeholder-light: #d1d5db
 );
 
 $dark-theme: (
   // Base colors
   bg: #111827,
+  bg-gradient: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%),
   bg-secondary: #1f2937,
   bg-tertiary: #374151,
   text: #f9fafb,
@@ -71,5 +76,8 @@ $dark-theme: (
   // Card and surface colors
   card-bg: #1f2937,
   surface: #374151,
-  overlay: rgba(0, 0, 0, 0.7)
+  overlay: rgba(0, 0, 0, 0.7),
+  // Placeholder colors
+  placeholder: #6b7280,
+  placeholder-light: #9ca3af
 );
