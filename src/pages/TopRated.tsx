@@ -64,7 +64,7 @@ export default function TopRated() {
     <div className="container">
       <div className="py-12 md:py-16 text-center px-4">
         <h1 className="mb-6 md:mb-8">{t("topRatedMovies")}</h1>
-        <p className="text-secondary mb-16 md:mb-24 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-secondary max-w-2xl mx-auto leading-relaxed">
           {t("discoverTopRated")}
         </p>
       </div>
