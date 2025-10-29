@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import "./MovieCard.scss";
 import { useGenresStore } from "../../store/useGenresStore";
 import { useTranslation } from "../../hooks/useTranslation";
+import { LazyImage } from "../LazyImage";
 
 export default function MovieCard({ movie }: { movie: MovieCardProps }) {
   const { id, title, poster_path, release_date, genre_ids, vote_average } =
@@ -27,12 +28,12 @@ export default function MovieCard({ movie }: { movie: MovieCardProps }) {
       className="movie-card"
     >
       <div className="poster">
-        <img
+        <LazyImage
           src={`${import.meta.env.VITE_IMAGE_URL}/w500/${poster_path}`}
           alt={title}
-          width={120}
-          height={180}
           className="poster-image"
+          threshold={0.1}
+          rootMargin="100px"
         />
 
         <div className="rating">

@@ -8,7 +8,7 @@ const translations = {
     about: "About",
     movieApp: "MovieApp",
     unknownGenre: "Unknown Genre",
-    loading: "Loading...",
+    loading: "Loading ...",
     error: "Error",
     noResults: "No results found",
     search: "Search",
@@ -35,6 +35,8 @@ const translations = {
     status: "Status",
     productionCompanies: "Production Companies",
     countries: "Countries",
+    tryAgain: "Try Again",
+    somethingWentWrong: "Something went wrong. Please try again.",
   },
   vi: {
     home: "Trang chủ",
@@ -42,7 +44,7 @@ const translations = {
     about: "Giới thiệu",
     movieApp: "Ứng dụng Phim",
     unknownGenre: "Thể loại không xác định",
-    loading: "Đang tải...",
+    loading: "Đang tải ...",
     error: "Lỗi",
     noResults: "Không tìm thấy kết quả",
     search: "Tìm kiếm",
@@ -69,6 +71,8 @@ const translations = {
     status: "Trạng thái",
     productionCompanies: "Công ty sản xuất",
     countries: "Quốc gia",
+    tryAgain: "Thử lại",
+    somethingWentWrong: "Đã xảy ra lỗi. Vui lòng thử lại.",
   },
 } as const;
 

@@ -2,16 +2,10 @@ import { Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { useTranslation } from "../../hooks/useTranslation";
 import "./MovieDetailsStates.scss";
+import Loader from "../Loader/Loader";
 
 export function MovieDetailsLoading() {
-  const { t } = useTranslation();
-
-  return (
-    <div className="movie-details-states loading">
-      <div className="loading-spinner"></div>
-      <p>{t("loading")}</p>
-    </div>
-  );
+  return <Loader />;
 }
 
 export function MovieDetailsError() {

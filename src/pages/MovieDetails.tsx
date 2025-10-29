@@ -1,7 +1,6 @@
 import { useParams } from "@tanstack/react-router";
 import { useMovieDetails } from "../hooks/useMovieDetails";
 import {
-  MovieHeader,
   MovieDetailsContent,
   MovieDetailsLoading,
   MovieDetailsError,
@@ -15,7 +14,6 @@ export default function MovieDetails() {
   if (isLoading) {
     return (
       <>
-        <MovieHeader />
         <MovieDetailsLoading />
       </>
     );
@@ -24,7 +22,6 @@ export default function MovieDetails() {
   if (error || !movie) {
     return (
       <>
-        <MovieHeader />
         <MovieDetailsError />
       </>
     );

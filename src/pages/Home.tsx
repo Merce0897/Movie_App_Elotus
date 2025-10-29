@@ -3,6 +3,8 @@ import { useSearch, useNavigate } from "@tanstack/react-router";
 import MovieCard from "../components/MovieCard/MovieCard";
 import Pagination from "../components/Pagination/Pagination";
 import { useTranslation } from "../hooks/useTranslation";
+import Loader from "../components/Loader/Loader";
+import { ErrorUI } from "../components/ErrorUI";
 
 export default function Home() {
   const { t, language } = useTranslation();
@@ -34,27 +36,11 @@ export default function Home() {
   };
 
   if (isPending) {
-    return (
-      <div className="container py-24">
-        <div className="flex justify-center items-center">
-          <div className="animate-pulse text-lg">{t("loading")}</div>
-        </div>
-      </div>
-    );
+    return <Loader />;
   }
 
   if (error) {
-    return (
-      <div className="container py-24">
-        <div
-          className="card p-16 mx-auto"
-          style={{ maxWidth: "500px", textAlign: "center" }}
-        >
-          <h2 className="mb-8">{t("error")}</h2>
-          <p>An error has occurred: {error.message}</p>
-        </div>
-      </div>
-    );
+    return <ErrorUI />;
   }
 
   const movies = data?.results;
