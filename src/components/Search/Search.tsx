@@ -43,6 +43,7 @@ export default function Search({
           to: "/search",
           search: { query: query.trim(), page: 1 },
         });
+        setQuery("");
       }
     }
   };

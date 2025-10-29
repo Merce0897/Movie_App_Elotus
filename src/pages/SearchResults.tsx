@@ -4,6 +4,8 @@ import Pagination from "../components/Pagination/Pagination";
 import Search from "../components/Search/Search";
 import { useTranslation } from "../hooks/useTranslation";
 import { useSearchMovies } from "../hooks/useSearchMovies";
+import Loader from "../components/Loader/Loader";
+import { ErrorUI } from "../components/ErrorUI";
 
 export default function SearchResults() {
   const { t, language } = useTranslation();
@@ -51,51 +53,11 @@ export default function SearchResults() {
   }
 
   if (isPending) {
-    return (
-      <div className="container py-24">
-        <div className="text-center mb-16">
-          <h1 className="mb-8">
-            {language === "vi"
-              ? `Kết quả cho "${query}"`
-              : `Results for "${query}"`}
-          </h1>
-        </div>
-        <div className="flex justify-center items-center">
-          <div className="animate-pulse text-lg">{t("loading")}</div>
-        </div>
-      </div>
-    );
+    return <Loader />;
   }
 
   if (error) {
-    return (
-      <div className="container py-24">
-        <div className="text-center mb-16">
-          <h1 className="mb-8">
-            {language === "vi"
-              ? `Kết quả cho "${query}"`
-              : `Results for "${query}"`}
-          </h1>
-        </div>
-        <div
-          className="card p-16 mx-auto"
-          style={{ maxWidth: "500px", textAlign: "center" }}
-        >
-          <h2 className="mb-8">{t("error")}</h2>
-          <p>
-            {language === "vi"
-              ? `Đã xảy ra lỗi khi tìm kiếm: ${error.message}`
-              : `An error occurred while searching: ${error.message}`}
-          </p>
-          <button
-            onClick={() => handleNewSearch(query)}
-            className="btn btn-primary mt-4"
-          >
-            {language === "vi" ? "Thử lại" : "Try Again"}
-          </button>
-        </div>
-      </div>
-    );
+    return <ErrorUI message={error.message} />;
   }
 
   const movies = data?.results || [];

@@ -153,11 +153,15 @@ textarea::-ms-input-placeholder {
 }
 
 .justify-center {
-  justify-content: center;
+  justify-items: center;
 }
 
 .flex {
   display: flex;
+}
+
+.relative {
+  position: relative;
 }
 
 .grid {

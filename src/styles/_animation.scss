@@ -1,0 +1,185 @@
+// Animation styles for Movie App
+
+// Pulse animation for loading states
+@keyframes pulse {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
+
+// Pulse animation class
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+// Faster pulse variant
+.animate-pulse-fast {
+  animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+// Slower pulse variant
+.animate-pulse-slow {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+// Subtle pulse for skeleton loading
+.skeleton-pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+  background-color: var(--skeleton-color, #e5e7eb);
+  border-radius: 4px;
+}
+
+// Pulse and revert animation (grows then shrinks back to original)
+@keyframes pulseNRevert {
+  0% {
+    transform: scale(0.8);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(0.8);
+  }
+}
+
+// Pulse-n-revert animation classes
+.animate-pulse-n-revert {
+  animation: pulseNRevert 2s ease-in-out;
+}
+
+.animate-pulse-n-revert-fast {
+  animation: pulseNRevert 1s ease-in-out;
+}
+
+.animate-pulse-n-revert-slow {
+  animation: pulseNRevert 3s ease-in-out;
+}
+
+.animate-pulse-n-revert-infinite {
+  animation: pulseNRevert 4s ease-in-out infinite;
+}
+
+// Alternative pulse-n-revert with opacity
+@keyframes pulseNRevertOpacity {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  25% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+  75% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-pulse-n-revert-opacity {
+  animation: pulseNRevertOpacity 2s ease-in-out;
+}
+
+// Shimmer effect (alternative to pulse)
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+// Dark mode shimmer
+.dark .animate-shimmer {
+  background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+  background-size: 200px 100%;
+}
+
+// Bounce animation
+@keyframes bounce {
+  0%,
+  20%,
+  53%,
+  80%,
+  100% {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translateY(0);
+  }
+  40%,
+  43% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translateY(-30px);
+  }
+  70% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translateY(-15px);
+  }
+  90% {
+    transform: translateY(-4px);
+  }
+}
+
+// Bounce animation class
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+// Bounce variants
+.animate-bounce-slow {
+  animation: bounce 2s infinite;
+}
+
+.animate-bounce-fast {
+  animation: bounce 0.5s infinite;
+}
+
+// Subtle bounce (smaller movement)
+@keyframes bounceSubtle {
+  0%,
+  20%,
+  53%,
+  80%,
+  100% {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translateY(0);
+  }
+  40%,
+  43% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translateY(-10px);
+  }
+  70% {
+    transform: translateY(-5px);
+  }
+  90% {
+    transform: translateY(-2px);
+  }
+}
+
+.animate-bounce-subtle {
+  animation: bounceSubtle 1s infinite;
+}
+
+// Single bounce (non-infinite)
+.animate-bounce-once {
+  animation: bounce 1s;
+}
