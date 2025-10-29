@@ -1,4 +1,8 @@
 .movie-additional-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   .section-title {
     color: var(--color-text-primary);
     font-size: 1.75rem;
@@ -13,6 +17,7 @@
   }
 
   .info-grid {
+    max-width: 1200px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
