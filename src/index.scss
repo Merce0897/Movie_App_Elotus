@@ -1,0 +1,520 @@
+@use "styles/color" as *;
+@use "styles/theme" as *;
+
+:root {
+  @include theme($light-theme);
+}
+
+[data-theme="dark"] {
+  @include theme($dark-theme);
+}
+
+// Base styles
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+// Typography
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text);
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 1.75rem;
+
+  @media (min-width: 640px) {
+    font-size: 2rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 2.5rem;
+  }
+}
+h2 {
+  font-size: 1.5rem;
+
+  @media (min-width: 640px) {
+    font-size: 1.75rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 2rem;
+  }
+}
+h3 {
+  font-size: 1.25rem;
+
+  @media (min-width: 640px) {
+    font-size: 1.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 1.75rem;
+  }
+}
+h4 {
+  font-size: 1.125rem;
+
+  @media (min-width: 640px) {
+    font-size: 1.25rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 1.5rem;
+  }
+}
+h5 {
+  font-size: 1rem;
+
+  @media (min-width: 640px) {
+    font-size: 1.125rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 1.25rem;
+  }
+}
+h6 {
+  font-size: 0.875rem;
+
+  @media (min-width: 640px) {
+    font-size: 1rem;
+  }
+}
+
+p {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--primary-hover);
+  }
+}
+
+// Form elements and placeholders
+input,
+textarea,
+select {
+  &::placeholder {
+    color: var(--placeholder);
+    opacity: 1; /* Ensures consistent opacity across browsers */
+  }
+
+  &:focus {
+    &::placeholder {
+      color: var(--placeholder-light);
+    }
+  }
+}
+
+// Browser-specific placeholder styles for better cross-browser compatibility
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: var(--placeholder);
+  opacity: 1;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: var(--placeholder);
+  opacity: 1;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: var(--placeholder);
+  opacity: 1;
+}
+
+input::-ms-input-placeholder,
+textarea::-ms-input-placeholder {
+  color: var(--placeholder);
+  opacity: 1;
+}
+
+// Layout utilities
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    padding: 0 1.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 2rem;
+  }
+
+  @media (min-width: 1200px) {
+    padding: 0 1rem;
+  }
+}
+
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-items: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.relative {
+  position: relative;
+}
+
+.grid {
+  display: grid;
+}
+
+// Define your spacing scale
+$spacings: 0, 4, 8, 12, 16, 20, 24, 32, 40, 48;
+
+// Generate padding classes dynamically
+@each $space in $spacings {
+  .p-#{$space} {
+    padding: #{$space}px;
+  }
+
+  .pt-#{$space} {
+    padding-top: #{$space}px;
+  }
+
+  .pr-#{$space} {
+    padding-right: #{$space}px;
+  }
+
+  .pb-#{$space} {
+    padding-bottom: #{$space}px;
+  }
+
+  .pl-#{$space} {
+    padding-left: #{$space}px;
+  }
+
+  .px-#{$space} {
+    padding-left: #{$space}px;
+    padding-right: #{$space}px;
+  }
+
+  .py-#{$space} {
+    padding-top: #{$space}px;
+    padding-bottom: #{$space}px;
+  }
+}
+
+// Generate margin classes
+@each $space in $spacings {
+  .m-#{$space} {
+    margin: #{$space}px;
+  }
+
+  .mt-#{$space} {
+    margin-top: #{$space}px;
+  }
+
+  .mr-#{$space} {
+    margin-right: #{$space}px;
+  }
+
+  .mb-#{$space} {
+    margin-bottom: #{$space}px;
+  }
+
+  .ml-#{$space} {
+    margin-left: #{$space}px;
+  }
+
+  .mx-#{$space} {
+    margin-left: #{$space}px;
+    margin-right: #{$space}px;
+  }
+
+  .my-#{$space} {
+    margin-top: #{$space}px;
+    margin-bottom: #{$space}px;
+  }
+}
+
+// Generate width & height classes dynamically, both in px or %
+@each $size in (25, 50, 75, 100, 150, 200, 250, 300, 350, 400, 450, 500) {
+  .w-#{$size} {
+    width: #{$size}px;
+  }
+
+  .h-#{$size} {
+    height: #{$size}px;
+  }
+}
+
+// Percentage widths
+.w-full {
+  width: 100%;
+}
+.w-1\/2 {
+  width: 50%;
+}
+.w-1\/3 {
+  width: 33.333333%;
+}
+.w-2\/3 {
+  width: 66.666667%;
+}
+.w-1\/4 {
+  width: 25%;
+}
+.w-3\/4 {
+  width: 75%;
+}
+
+// Heights
+.h-full {
+  height: 100%;
+}
+.h-screen {
+  height: 100vh;
+}
+
+// Responsive spacing utilities
+.space-y-8 > * + * {
+  margin-top: 2rem;
+}
+
+.space-y-12 > * + * {
+  margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .md\:space-y-12 > * + * {
+    margin-top: 3rem;
+  }
+}
+
+// Text alignment utilities
+.text-center {
+  text-align: center;
+}
+
+// Max width utilities
+.max-w-2xl {
+  max-width: 42rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Leading (line-height) utilities
+.leading-relaxed {
+  line-height: 1.625;
+}
+
+// Responsive padding utilities
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+// Responsive margin utilities
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.mb-12 {
+  margin-bottom: 3rem;
+}
+
+.mb-16 {
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .md\:py-24 {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+
+  .md\:py-16 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .md\:pb-24 {
+    padding-bottom: 6rem;
+  }
+
+  .md\:mb-8 {
+    margin-bottom: 2rem;
+  }
+
+  .md\:mb-16 {
+    margin-bottom: 4rem;
+  }
+
+  .md\:mb-24 {
+    margin-bottom: 6rem;
+  }
+
+  .md\:p-16 {
+    padding: 4rem;
+  }
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+
+  @media (min-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (min-width: 1280px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  @media (min-width: 1536px) {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+// Button base styles
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &-primary {
+    background-color: var(--primary);
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: var(--primary-hover);
+    }
+  }
+
+  &-secondary {
+    background-color: var(--secondary);
+    color: var(--text);
+
+    &:hover:not(:disabled) {
+      background-color: var(--secondary-hover);
+    }
+  }
+}
+
+// Card styles
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px var(--shadow);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 6px var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+}
+
+// Loading animations
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+// Theme transition
+* {
+  transition: background-color 0.3s ease, background 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}

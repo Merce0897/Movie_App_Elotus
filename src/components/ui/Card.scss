@@ -1,0 +1,81 @@
+// ============================
+// Card Component Styles
+// ============================
+
+$card-bg: var(--background, #fff);
+$card-border: rgba(0, 0, 0, 0.1);
+$card-radius: 12px;
+$card-padding: 1rem;
+$card-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+$transition-base: 0.25s ease-in-out;
+
+// ----------------------------
+// Mixins
+// ----------------------------
+@mixin hover-shadow {
+  transition: box-shadow $transition-base;
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// ----------------------------
+// Base Card
+// ----------------------------
+.card {
+  background-color: $card-bg;
+  border: 1px solid $card-border;
+  border-radius: $card-radius;
+  box-shadow: $card-shadow;
+  overflow: hidden;
+  @include hover-shadow;
+
+  display: flex;
+  flex-direction: column;
+  transition: transform $transition-base;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &__content {
+    padding: $card-padding;
+  }
+
+  &__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--foreground, #111);
+    margin-bottom: 0.25rem;
+  }
+
+  &__description {
+    font-size: 0.875rem;
+    color: var(--muted-foreground, #666);
+    margin-bottom: 0.75rem;
+  }
+}
+
+// ----------------------------
+// Variants (optional)
+// ----------------------------
+.card--outlined {
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: none;
+}
+
+.card--flat {
+  box-shadow: none;
+  border: none;
+}
+
+.card--hoverable {
+  cursor: pointer;
+  @include hover-shadow;
+}
+
+.card--accent {
+  border: 1px solid var(--accent, #007bff);
+}

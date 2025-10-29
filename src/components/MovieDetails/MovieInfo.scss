@@ -1,0 +1,228 @@
+.movie-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  @media (min-width: 768px) {
+    gap: 2rem;
+  }
+
+  .title-section {
+    .title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--color-text-primary);
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      text-align: center;
+
+      @media (min-width: 480px) {
+        font-size: 1.75rem;
+      }
+
+      @media (min-width: 768px) {
+        font-size: 2rem;
+        text-align: left;
+        margin-bottom: 0.75rem;
+      }
+
+      @media (min-width: 1024px) {
+        font-size: 2.5rem;
+      }
+
+      @media (min-width: 1200px) {
+        font-size: 3rem;
+      }
+    }
+
+    .tagline {
+      font-size: 1rem;
+      color: var(--color-text-secondary);
+      font-style: italic;
+      margin: 0;
+      opacity: 0.9;
+      font-weight: 400;
+      text-align: center;
+
+      @media (min-width: 480px) {
+        font-size: 1.1rem;
+      }
+
+      @media (min-width: 768px) {
+        text-align: left;
+      }
+
+      @media (min-width: 1024px) {
+        font-size: 1.25rem;
+      }
+    }
+  }
+
+  .meta-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+
+    @media (min-width: 768px) {
+      justify-content: flex-start;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      gap: 2rem;
+    }
+
+    > div {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-text-secondary);
+      font-weight: 600;
+      font-size: 0.875rem;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.625rem 0.875rem;
+      border-radius: 2rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+
+      @media (min-width: 768px) {
+        font-size: 0.9rem;
+        gap: 0.625rem;
+        padding: 0.75rem 1rem;
+      }
+
+      @media (min-width: 1024px) {
+        font-size: 1rem;
+      }
+
+      .icon {
+        width: 1rem;
+        height: 1rem;
+        color: var(--color-primary);
+
+        @media (min-width: 768px) {
+          width: 1.125rem;
+          height: 1.125rem;
+        }
+      }
+    }
+
+    .rating {
+      background: linear-gradient(135deg, var(--color-primary), #fbbf24);
+      border: 1px solid #fbbf24;
+      color: white;
+
+      .score {
+        color: #fbbf24;
+        font-weight: 700;
+        font-size: 1rem;
+
+        @media (min-width: 768px) {
+          font-size: 1.125rem;
+        }
+      }
+
+      .votes {
+        font-size: 0.625rem;
+        margin-left: 0.25rem;
+        opacity: 0.9;
+
+        @media (min-width: 768px) {
+          font-size: 0.675rem;
+        }
+      }
+
+      .icon {
+        fill: #fbbf24;
+        color: #fbbf24;
+      }
+    }
+  }
+
+  .genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+
+    @media (min-width: 768px) {
+      justify-content: flex-start;
+      gap: 0.75rem;
+    }
+
+    .genre {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+      @media (min-width: 768px) {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.875rem;
+      }
+
+      &:hover {
+        cursor: default;
+        box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+      }
+    }
+  }
+
+  .overview {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+
+    @media (min-width: 768px) {
+      padding: 2rem;
+      border-radius: 1rem;
+    }
+
+    h3 {
+      color: var(--color-text-primary);
+      font-size: 1.125rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+      text-align: center;
+
+      @media (min-width: 768px) {
+        text-align: left;
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+      }
+
+      @media (min-width: 1024px) {
+        font-size: 1.5rem;
+      }
+    }
+
+    p {
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      font-size: 0.95rem;
+      text-align: left;
+
+      @media (min-width: 768px) {
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: justify;
+      }
+
+      @media (min-width: 1024px) {
+        font-size: 1.125rem;
+      }
+    }
+  }
+}

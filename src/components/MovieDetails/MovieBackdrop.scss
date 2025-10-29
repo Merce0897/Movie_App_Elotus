@@ -1,0 +1,28 @@
+.movie-backdrop {
+  overflow: hidden;
+  z-index: 1;
+
+  .backdrop-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: brightness(0.5) contrast(1.1);
+  }
+
+  @media (max-width: 768px) {
+    height: calc(
+      45vh + 70px
+    ); // Match the responsive margin-top + navbar height
+  }
+
+  @media (max-width: 480px) {
+    height: calc(
+      35vh + 70px
+    ); // Match the responsive margin-top + navbar height
+  }
+}
