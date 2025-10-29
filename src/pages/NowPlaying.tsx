@@ -6,20 +6,20 @@ import { useTranslation } from "../hooks/useTranslation";
 import Loader from "../components/Loader/Loader";
 import { ErrorUI } from "../components/ErrorUI";
 
-export default function TopRated() {
+export default function NowPlaying() {
   const { t, language } = useTranslation();
-  const search = useSearch({ from: "/top-rated" });
-  const navigate = useNavigate({ from: "/top-rated" });
+  const search = useSearch({ from: "/now-playing" });
+  const navigate = useNavigate({ from: "/now-playing" });
   const currentPage = search.page || 1;
 
-  // Fetch top rated movies
+  // Fetch movies
   const { isPending, error, data } = useQuery({
-    queryKey: ["top-rated-movies", language, currentPage],
+    queryKey: ["now-playing-movies", language, currentPage],
     queryFn: () =>
       fetch(
         `${
           import.meta.env.VITE_API_URL
-        }/movie/top_rated?language=${language}&page=${currentPage}`,
+        }/movie/now_playing?language=${language}&page=${currentPage}`,
         {
           headers: {
             accept: "application/json",
@@ -63,9 +63,9 @@ export default function TopRated() {
   return (
     <div className="container">
       <div className="py-12 md:py-16 text-center px-4">
-        <h1 className="mb-6 md:mb-8">{t("topRatedMovies")}</h1>
+        <h1 className="mb-6 md:mb-8">{t("nowPlayingMovies")}</h1>
         <p className="text-secondary mb-16 md:mb-24 max-w-2xl mx-auto leading-relaxed">
-          {t("discoverTopRated")}
+          {t("discoverNowPlaying")}
         </p>
       </div>
 

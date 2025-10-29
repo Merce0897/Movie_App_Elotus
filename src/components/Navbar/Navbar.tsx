@@ -12,7 +12,7 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="navbar-container">
         <div className="navbar-brand">
-          <Link to="/" search={{ page: 1 }} className="brand-link">
+          <Link to="/" className="brand-link">
             🎬 MovieApp
           </Link>
           <div className="navbar-search">
@@ -22,8 +22,11 @@ export default function Navbar() {
 
         <div className="navbar-content">
           <div className="navbar-links">
-            <Link to="/" search={{ page: 1 }} className="nav-link">
+            <Link to="/" className="nav-link">
               {t("home")}
+            </Link>
+            <Link to="/now-playing" search={{ page: 1 }} className="nav-link">
+              {t("nowPlaying")}
             </Link>
             <Link to="/top-rated" search={{ page: 1 }} className="nav-link">
               {t("topRated")}

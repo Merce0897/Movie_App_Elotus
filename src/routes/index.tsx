@@ -3,9 +3,4 @@ import Home from "../pages/Home";
 
 export const Route = createFileRoute("/")({
   component: Home,
-  validateSearch: (search: Record<string, unknown>) => {
-    return {
-      page: Number(search?.page ?? 1),
-    };
-  },
 });

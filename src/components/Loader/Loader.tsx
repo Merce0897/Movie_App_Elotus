@@ -19,7 +19,6 @@ export default function Loader() {
     p.innerHTML = text
       .split("")
       .map((letter) => {
-        console.log(letter);
         return `<span>` + letter + `</span>`;
       })
       .join("");

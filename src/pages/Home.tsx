@@ -1,92 +1,75 @@
-import { useQuery } from "@tanstack/react-query";
-import { useSearch, useNavigate } from "@tanstack/react-router";
-import MovieCard from "../components/MovieCard/MovieCard";
-import Pagination from "../components/Pagination/Pagination";
+import MovieCarousel from "../components/MovieCarousel/MovieCarousel";
 import { useTranslation } from "../hooks/useTranslation";
-import Loader from "../components/Loader/Loader";
-import { ErrorUI } from "../components/ErrorUI";
+import {
+  useTrendingMovies,
+  useNowPlayingMovies,
+  useTopRatedMovies,
+  usePopularMovies,
+  useUpcomingMovies,
+} from "../hooks/useMovieLists";
 
 export default function Home() {
-  const { t, language } = useTranslation();
-  const search = useSearch({ from: "/" });
-  const navigate = useNavigate({ from: "/" });
-  const currentPage = search.page || 1;
+  const { t } = useTranslation();
 
-  // Fetch movies
-  const { isPending, error, data } = useQuery({
-    queryKey: ["now-playing-movies", language, currentPage],
-    queryFn: () =>
-      fetch(
-        `${
-          import.meta.env.VITE_API_URL
-        }/movie/now_playing?language=${language}&page=${currentPage}`,
-        {
-          headers: {
-            accept: "application/json",
-            Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
-          },
-        }
-      ).then((res) => res.json()),
-  });
-
-  const handlePageChange = (page: number) => {
-    navigate({
-      search: { page },
-    });
-  };
-
-  if (isPending) {
-    return <Loader />;
-  }
-
-  if (error) {
-    return <ErrorUI />;
-  }
-
-  const movies = data?.results;
-  const totalPages = data?.total_pages || 1;
-
-  if (!movies || movies.length === 0) {
-    return (
-      <div className="container py-24">
-        <div
-          className="card p-16 mx-auto"
-          style={{ maxWidth: "500px", textAlign: "center" }}
-        >
-          <h2 className="mb-8">{t("noResults")}</h2>
-          <p>We couldn't find any movies to display at the moment.</p>
-        </div>
-      </div>
-    );
-  }
+  // Fetch all movie lists
+  const trendingMovies = useTrendingMovies();
+  const nowPlayingMovies = useNowPlayingMovies();
+  const topRatedMovies = useTopRatedMovies();
+  const popularMovies = usePopularMovies();
+  const upcomingMovies = useUpcomingMovies();
 
   return (
-    <div className="container">
-      <div className="py-16" style={{ textAlign: "center" }}>
-        <h1 className="mb-8">
-          {language === "vi" ? "Phim Đang Chiếu" : "Now Playing Movies"}
-        </h1>
-        <p className="text-secondary mb-24">
-          {language === "vi"
-            ? "Khám phá những bộ phim mới nhất hiện đang chiếu rạp"
-            : "Discover the latest movies currently in theaters"}
+    <div className="container py-16 md:py-24">
+      <div className="text-center mb-8 md:mb-12 px-4">
+        <h1 className="mb-4">{t("discoverGreatMovies")}</h1>
+        <p className="text-secondary max-w-2xl mx-auto leading-relaxed">
+          {t("exploreMovies")}
         </p>
       </div>
 
-      <div className="grid-layout pb-24">
-        {movies.map((movie: MovieCardProps) => (
-          <MovieCard movie={movie} key={movie.id} />
-        ))}
-      </div>
+      <div className="movie-lists space-y-8 md:space-y-12">
+        {/* Trending Movies */}
+        <MovieCarousel
+          title={t("trending")}
+          movies={trendingMovies.data?.results?.slice(0, 12) || []}
+          isLoading={trendingMovies.isPending}
+          error={trendingMovies.error?.message}
+        />
 
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-        showFirstLast={true}
-        maxVisiblePages={5}
-        className={isPending ? "loading" : ""}
-      />
+        {/* Now Playing Movies */}
+        <MovieCarousel
+          title={t("nowPlaying")}
+          movies={nowPlayingMovies.data?.results?.slice(0, 12) || []}
+          isLoading={nowPlayingMovies.isPending}
+          error={nowPlayingMovies.error?.message}
+          viewAllLink="/now-playing"
+        />
+
+        {/* Popular Movies */}
+        <MovieCarousel
+          title={t("popular")}
+          movies={popularMovies.data?.results?.slice(0, 12) || []}
+          isLoading={popularMovies.isPending}
+          error={popularMovies.error?.message}
+        />
+
+        {/* Top Rated Movies */}
+        <MovieCarousel
+          title={t("topRated")}
+          movies={topRatedMovies.data?.results?.slice(0, 12) || []}
+          isLoading={topRatedMovies.isPending}
+          error={topRatedMovies.error?.message}
+          viewAllLink="/top-rated"
+        />
+
+        {/* Upcoming Movies */}
+        <MovieCarousel
+          title={t("upcoming")}
+          movies={upcomingMovies.data?.results?.slice(0, 12) || []}
+          isLoading={upcomingMovies.isPending}
+          error={upcomingMovies.error?.message}
+        />
+      </div>
     </div>
   );
 }

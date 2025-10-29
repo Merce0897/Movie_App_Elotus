@@ -9,11 +9,19 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UpcomingRouteImport } from './routes/upcoming'
 import { Route as TopRatedRouteImport } from './routes/top-rated'
 import { Route as SearchRouteImport } from './routes/search'
+import { Route as PopularRouteImport } from './routes/popular'
+import { Route as NowPlayingRouteImport } from './routes/now-playing'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MovieMovieIdRouteImport } from './routes/movie.$movieId'
 
+const UpcomingRoute = UpcomingRouteImport.update({
+  id: '/upcoming',
+  path: '/upcoming',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TopRatedRoute = TopRatedRouteImport.update({
   id: '/top-rated',
   path: '/top-rated',
@@ -22,6 +30,16 @@ const TopRatedRoute = TopRatedRouteImport.update({
 const SearchRoute = SearchRouteImport.update({
   id: '/search',
   path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PopularRoute = PopularRouteImport.update({
+  id: '/popular',
+  path: '/popular',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NowPlayingRoute = NowPlayingRouteImport.update({
+  id: '/now-playing',
+  path: '/now-playing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -37,40 +55,81 @@ const MovieMovieIdRoute = MovieMovieIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/now-playing': typeof NowPlayingRoute
+  '/popular': typeof PopularRoute
   '/search': typeof SearchRoute
   '/top-rated': typeof TopRatedRoute
+  '/upcoming': typeof UpcomingRoute
   '/movie/$movieId': typeof MovieMovieIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/now-playing': typeof NowPlayingRoute
+  '/popular': typeof PopularRoute
   '/search': typeof SearchRoute
   '/top-rated': typeof TopRatedRoute
+  '/upcoming': typeof UpcomingRoute
   '/movie/$movieId': typeof MovieMovieIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/now-playing': typeof NowPlayingRoute
+  '/popular': typeof PopularRoute
   '/search': typeof SearchRoute
   '/top-rated': typeof TopRatedRoute
+  '/upcoming': typeof UpcomingRoute
   '/movie/$movieId': typeof MovieMovieIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/search' | '/top-rated' | '/movie/$movieId'
+  fullPaths:
+    | '/'
+    | '/now-playing'
+    | '/popular'
+    | '/search'
+    | '/top-rated'
+    | '/upcoming'
+    | '/movie/$movieId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/search' | '/top-rated' | '/movie/$movieId'
-  id: '__root__' | '/' | '/search' | '/top-rated' | '/movie/$movieId'
+  to:
+    | '/'
+    | '/now-playing'
+    | '/popular'
+    | '/search'
+    | '/top-rated'
+    | '/upcoming'
+    | '/movie/$movieId'
+  id:
+    | '__root__'
+    | '/'
+    | '/now-playing'
+    | '/popular'
+    | '/search'
+    | '/top-rated'
+    | '/upcoming'
+    | '/movie/$movieId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  NowPlayingRoute: typeof NowPlayingRoute
+  PopularRoute: typeof PopularRoute
   SearchRoute: typeof SearchRoute
   TopRatedRoute: typeof TopRatedRoute
+  UpcomingRoute: typeof UpcomingRoute
   MovieMovieIdRoute: typeof MovieMovieIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/upcoming': {
+      id: '/upcoming'
+      path: '/upcoming'
+      fullPath: '/upcoming'
+      preLoaderRoute: typeof UpcomingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/top-rated': {
       id: '/top-rated'
       path: '/top-rated'
@@ -83,6 +142,20 @@ declare module '@tanstack/react-router' {
       path: '/search'
       fullPath: '/search'
       preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/popular': {
+      id: '/popular'
+      path: '/popular'
+      fullPath: '/popular'
+      preLoaderRoute: typeof PopularRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/now-playing': {
+      id: '/now-playing'
+      path: '/now-playing'
+      fullPath: '/now-playing'
+      preLoaderRoute: typeof NowPlayingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -104,8 +177,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  NowPlayingRoute: NowPlayingRoute,
+  PopularRoute: PopularRoute,
   SearchRoute: SearchRoute,
   TopRatedRoute: TopRatedRoute,
+  UpcomingRoute: UpcomingRoute,
   MovieMovieIdRoute: MovieMovieIdRoute,
 }
 export const routeTree = rootRouteImport
