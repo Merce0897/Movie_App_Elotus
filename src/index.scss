@@ -437,14 +437,6 @@ $spacings: 0, 4, 8, 12, 16, 20, 24, 32, 40, 48;
   @media (min-width: 1024px) {
     grid-template-columns: repeat(4, 1fr);
   }
-
-  @media (min-width: 1280px) {
-    grid-template-columns: repeat(5, 1fr);
-  }
-
-  @media (min-width: 1536px) {
-    grid-template-columns: repeat(6, 1fr);
-  }
 }
 
 // Button base styles

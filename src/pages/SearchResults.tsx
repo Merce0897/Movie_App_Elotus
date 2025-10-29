@@ -68,7 +68,7 @@ export default function SearchResults() {
         <h1 className="mb-6 md:mb-8">
           {t("resultsFor")} "{query}"
         </h1>
-        <p className="text-secondary mb-12 md:mb-16">
+        <p className="text-secondary">
           {t("foundResults")} {totalResults} {t("results")}
         </p>
       </div>
