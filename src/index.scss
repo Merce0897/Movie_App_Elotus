@@ -48,22 +48,66 @@ h6 {
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 1.75rem;
+
+  @media (min-width: 640px) {
+    font-size: 2rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 2.5rem;
+  }
 }
 h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
+
+  @media (min-width: 640px) {
+    font-size: 1.75rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 2rem;
+  }
 }
 h3 {
-  font-size: 1.75rem;
+  font-size: 1.25rem;
+
+  @media (min-width: 640px) {
+    font-size: 1.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 1.75rem;
+  }
 }
 h4 {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
+
+  @media (min-width: 640px) {
+    font-size: 1.25rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 1.5rem;
+  }
 }
 h5 {
-  font-size: 1.25rem;
+  font-size: 1rem;
+
+  @media (min-width: 640px) {
+    font-size: 1.125rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 1.25rem;
+  }
 }
 h6 {
-  font-size: 1rem;
+  font-size: 0.875rem;
+
+  @media (min-width: 640px) {
+    font-size: 1rem;
+  }
 }
 
 p {
@@ -139,6 +183,19 @@ textarea::-ms-input-placeholder {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    padding: 0 1.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 2rem;
+  }
+
+  @media (min-width: 1200px) {
+    padding: 0 1rem;
+  }
 }
 
 .app-layout {
@@ -276,24 +333,117 @@ $spacings: 0, 4, 8, 12, 16, 20, 24, 32, 40, 48;
   height: 100vh;
 }
 
+// Responsive spacing utilities
+.space-y-8 > * + * {
+  margin-top: 2rem;
+}
+
+.space-y-12 > * + * {
+  margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .md\:space-y-12 > * + * {
+    margin-top: 3rem;
+  }
+}
+
+// Text alignment utilities
+.text-center {
+  text-align: center;
+}
+
+// Max width utilities
+.max-w-2xl {
+  max-width: 42rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Leading (line-height) utilities
+.leading-relaxed {
+  line-height: 1.625;
+}
+
+// Responsive padding utilities
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+// Responsive margin utilities
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.mb-12 {
+  margin-bottom: 3rem;
+}
+
+.mb-16 {
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .md\:py-24 {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+
+  .md\:py-16 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .md\:pb-24 {
+    padding-bottom: 6rem;
+  }
+
+  .md\:mb-8 {
+    margin-bottom: 2rem;
+  }
+
+  .md\:mb-16 {
+    margin-bottom: 4rem;
+  }
+
+  .md\:mb-24 {
+    margin-bottom: 6rem;
+  }
+
+  .md\:p-16 {
+    padding: 4rem;
+  }
+}
+
 .grid-layout {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  gap: 1.5rem; // Tailwind gap-6 = 1.5rem
+  gap: 1rem;
 
-  @media (min-width: 640px) {
-    // sm
+  @media (min-width: 480px) {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
   }
 
   @media (min-width: 1024px) {
-    // lg
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 
   @media (min-width: 1280px) {
-    // xl
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  @media (min-width: 1536px) {
+    grid-template-columns: repeat(6, 1fr);
   }
 }
 

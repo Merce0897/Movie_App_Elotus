@@ -8,7 +8,7 @@ import Loader from "../components/Loader/Loader";
 import { ErrorUI } from "../components/ErrorUI";
 
 export default function SearchResults() {
-  const { t, language } = useTranslation();
+  const { t } = useTranslation();
   const search = useSearch({ from: "/search" });
   const navigate = useNavigate({ from: "/search" });
   const currentPage = search.page || 1;
@@ -36,16 +36,14 @@ export default function SearchResults() {
   // Show search form if no query
   if (!query) {
     return (
-      <div className="container py-24">
-        <div className="text-center mb-16">
-          <h1 className="mb-8">{t("searchMovies")}</h1>
-          <p className="text-secondary mb-24">
-            {language === "vi"
-              ? "Tìm kiếm bộ phim yêu thích của bạn"
-              : "Search for your favorite movies"}
+      <div className="container py-16 md:py-24">
+        <div className="text-center mb-12 md:mb-16 px-4">
+          <h1 className="mb-6 md:mb-8">{t("searchMovies")}</h1>
+          <p className="text-secondary mb-16 md:mb-24 max-w-2xl mx-auto leading-relaxed">
+            {t("searchPrompt")}
           </p>
         </div>
-        <div className="max-w-lg mx-auto">
+        <div className="max-w-lg mx-auto px-4">
           <Search onSearch={handleNewSearch} initialValue={query} />
         </div>
       </div>
@@ -66,34 +64,28 @@ export default function SearchResults() {
 
   return (
     <div className="container">
-      <div className="py-16 text-center">
-        <h1 className="mb-8">
-          {language === "vi"
-            ? `Kết quả cho "${query}"`
-            : `Results for "${query}"`}
+      <div className="py-12 md:py-16 text-center px-4">
+        <h1 className="mb-6 md:mb-8">
+          {t("resultsFor")} "{query}"
         </h1>
-        <p className="text-secondary mb-16">
-          {language === "vi"
-            ? `Tìm thấy ${totalResults} kết quả`
-            : `Found ${totalResults} results`}
+        <p className="text-secondary mb-12 md:mb-16">
+          {t("foundResults")} {totalResults} {t("results")}
         </p>
       </div>
 
       {movies.length === 0 ? (
         <div
-          className="card p-16 mx-auto"
+          className="card p-8 md:p-16 mx-auto"
           style={{ maxWidth: "500px", textAlign: "center" }}
         >
-          <h2 className="mb-8">{t("noResults")}</h2>
+          <h2 className="mb-6 md:mb-8">{t("noResults")}</h2>
           <p>
-            {language === "vi"
-              ? `Không tìm thấy kết quả nào cho "${query}". Hãy thử với từ khóa khác.`
-              : `No results found for "${query}". Try searching with different keywords.`}
+            {t("noResultsText")} "{query}". {t("tryDifferentKeywords")}
           </p>
         </div>
       ) : (
         <>
-          <div className="grid-layout pb-24">
+          <div className="grid-layout pb-16 md:pb-24">
             {movies.map((movie: MovieCardProps) => (
               <MovieCard movie={movie} key={movie.id} />
             ))}

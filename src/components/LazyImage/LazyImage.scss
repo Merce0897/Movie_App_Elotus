@@ -31,9 +31,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--bg-secondary);
+  background-color: var(--text);
+  opacity: 0.1;
   color: var(--text-secondary);
   border-radius: inherit;
+  animation: shimmer 2s infinite;
 
   .error-icon {
     font-size: 2rem;

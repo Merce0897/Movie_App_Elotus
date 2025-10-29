@@ -41,12 +41,7 @@ export const LazyImage: React.FC<LazyImageProps> = ({
       )}
 
       {/* Error fallback */}
-      {isError && (
-        <div className="lazy-image-error">
-          <div className="error-icon">📷</div>
-          <span className="error-text">Failed to load image</span>
-        </div>
-      )}
+      {isError && <div className="lazy-image-error"></div>}
 
       {/* Actual image */}
       <img
